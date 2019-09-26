@@ -10,16 +10,22 @@ import com.projetos.projetochdedetizadora.model.Cidade;
 import com.projetos.projetochdedetizadora.model.Cliente;
 import com.projetos.projetochdedetizadora.util.TipoPessoa;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
 
@@ -54,6 +60,8 @@ public class ClienteController implements Initializable, ICadastro {
     private ClienteDao dao = new ClienteDao();
     private Cliente objetoSelecionado = new Cliente();
     private CidadeDao daoCidade = new CidadeDao();
+    private ObservableList<Cliente> observableList = FXCollections.observableArrayList();
+    private List<Cliente> listar;
     
 
     @Override
@@ -66,6 +74,11 @@ public class ClienteController implements Initializable, ICadastro {
         //----> CARREGAMENTO DO COMBOBOX
         cbTipoPessoa.setItems(TipoPessoa.tipoPessoa());
         cbCidade.setItems(daoCidade.comboBoxCidade());
+        
+        //---->CRIANDO COLUNAS E INSERINDO NA TAB
+        criarColunasTabela();
+        //---->ATUALIZANDO A TABELA
+        atualizarTabela();
     }    
 
     @FXML
@@ -114,10 +127,32 @@ public class ClienteController implements Initializable, ICadastro {
 
     @Override
     public void criarColunasTabela() {
+        //Criando a coluna das tabelas.
+        TableColumn<Cliente, Long> colunaId = new TableColumn<>("ID");
+        TableColumn<Cliente, String> colunaDescricao = new TableColumn<>("NOME");
+        TableColumn<Cliente, Long> colunaTel1 = new TableColumn<>("TEL");
+        
+        //ADICONANDO COLUNAS A TABELA
+        tableView.getColumns().addAll(colunaId, colunaDescricao, colunaTel1);
+        
+        //PROPRIEDADE QUE REPRESENTA OS CAMPOS NA TABELA -> relacionando com o model
+        colunaId.setCellValueFactory(new PropertyValueFactory("id"));
+        colunaDescricao.setCellValueFactory(new PropertyValueFactory("descricao"));
+        colunaTel1.setCellValueFactory(new PropertyValueFactory("telefone1"));        
     }
 
     @Override
     public void atualizarTabela() {
+        observableList.clear();
+        
+        listar = dao.consultar(tfPesquisar.getText());
+        
+        for (Cliente client: listar){
+            observableList.add(client);
+        }
+        
+        tableView.getItems().setAll(observableList);
+        tableView.getSelectionModel().selectFirst();
     }
 
     @Override
@@ -126,5 +161,10 @@ public class ClienteController implements Initializable, ICadastro {
 
     @Override
     public void limparCamposFormulario() {
+    }
+
+    @FXML
+    private void filtrarRegistro(KeyEvent event) {
+        atualizarTabela();
     }
 }

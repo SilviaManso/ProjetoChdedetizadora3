@@ -2,7 +2,10 @@
 package com.projetos.projetochdedetizadora.dao;
 
 import com.projetos.projetochdedetizadora.model.Cidade;
-
+import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -24,7 +27,40 @@ public class CidadeDao {
         }  
     }
   
-     public void excluir(Cidade cidade) {
+    //METODO PARA REEALIZAR AS CONSULTAS
+    public List<Cidade> consultar(String descricao){
+        List<Cidade> lista = new ArrayList<>();
+        Session session = ConexaoBanco.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        if (descricao.length() == 0){
+            lista = session.createQuery(" from Cidade ").getResultList(); //retorna todos os registros
+        } else {
+            lista = session.createQuery(" from Cidade c where c.descricao like "+"'"+descricao+"%'").getResultList();
+        }
+        session.getTransaction().commit();
+        session.close();
+        
+        return lista;
+    }
+    
+    //METODO PARA CARREGAR O COMBOBOX COM DADOS DO BANCO DE DADOS
+    public ObservableList<Cidade> comboBoxCidade(){
+        List<Cidade> lista = new ArrayList<>();
+        Session session = ConexaoBanco.getSessionFactory().openSession();
+        session.beginTransaction();
+        lista = session.createQuery(" from Cidade ").getResultList();
+        session.getTransaction().commit();
+        session.close();
+        
+        for (Cidade city: lista){
+            obsList.add(city);
+        }
+        return obsList;
+    }
+    
+    //METODO PARA REEALIZAR A EXCLUSÃO DE REGISTROS
+    public void excluir(Cidade cidade) {
         try {
             Session session = ConexaoBanco.getSessionFactory().openSession();
             session.beginTransaction();
