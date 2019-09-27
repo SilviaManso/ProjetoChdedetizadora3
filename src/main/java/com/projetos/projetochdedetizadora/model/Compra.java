@@ -1,13 +1,29 @@
 
 package com.projetos.projetochdedetizadora.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
-public class Compra {
+@Entity
+@Table(name="compra")
+public class Compra implements Serializable {
+    
+     @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)//auto icremente
+    @Column(name="id", nullable = false)//coluna no banco de dados
     private Long id;
+     
+   @Column(name="compra", length = 100, nullable = false)  
     private Double valorCompra;
-    private Long fornecedor;
+    private Long compra ;
+    
+     @Column(name="data compra", length = 100, nullable = false)
     private LocalDate dataCompra;
     private String observacao;
 
@@ -28,11 +44,11 @@ public class Compra {
     }
 
     public Long getFornecedor() {
-        return fornecedor;
+        return compra;
     }
 
     public void setFornecedor(Long fornecedor) {
-        this.fornecedor = fornecedor;
+        this.compra = fornecedor;
     }
 
     public LocalDate getDataCompra() {

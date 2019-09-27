@@ -2,6 +2,8 @@
 package com.projetos.projetochdedetizadora.dao;
 
 import com.projetos.projetochdedetizadora.model.Cliente;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -22,4 +24,4 @@ public class ClienteDao {
         }catch (HibernateException erro) {
             System.out.println("Ocorreu o erro:" + erro); 
         } 
-    } 
+    } }

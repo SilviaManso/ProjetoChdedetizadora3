@@ -61,7 +61,7 @@ public class FornecedorController implements Initializable, ICadastro {
         imgViewTitulo.setImage(img);
         
         //----> CARREGAMENTO DO COMBOBOX
-        cbCidade.setItems(daoCidade.comboBoxCidade());       
+       // cbCidade.setItems(daoCidade.comboBoxCidade());       
     }    
 
     @FXML

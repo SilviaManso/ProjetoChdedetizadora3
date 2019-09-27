@@ -1,11 +1,33 @@
 
 package com.projetos.projetochdedetizadora.model;
 
-public class ItensOs {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="itens")
+
+public class ItensOs implements Serializable {
+     @Id //chave primaria
+    @GeneratedValue(strategy =GenerationType.IDENTITY)//auto incremente
+    @Column(name="id", nullable = false)//coluna no banco de dados
     private Long id;
+    
+    @Column(name="valor unitario", length = 100, nullable = false)
     private Double valorUnit;
+    
+    @Column(name="quantidade", length = 100, nullable = false)
     private Double quantidade;
+    
+    @Column(name="ordem serviço", length = 100, nullable = false)
     private Long ordemServico;
+    
+    @Column(name="produto", length = 100, nullable = false)
     private Long produto;
 
     public Long getId() {

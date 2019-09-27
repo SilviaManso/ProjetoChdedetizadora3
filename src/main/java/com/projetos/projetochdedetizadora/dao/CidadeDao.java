@@ -2,6 +2,8 @@
 package com.projetos.projetochdedetizadora.dao;
 
 import com.projetos.projetochdedetizadora.model.Cidade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

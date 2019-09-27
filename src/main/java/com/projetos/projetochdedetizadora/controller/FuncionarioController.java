@@ -58,7 +58,7 @@ public class FuncionarioController implements Initializable, ICadastro {
         imgViewTitulo.setImage(img); 
         
         //----> CARREGAMENTO DO COMBOBOX UF
-        cbCidade.setItems(daoCidade.comboBoxCidade());
+      //  cbCidade.setItems(comboCidade.comboBoxCidade());
     }    
 
     @FXML

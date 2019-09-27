@@ -51,9 +51,9 @@ public class ClienteController implements Initializable, ICadastro {
     @FXML private JFXTextField tfComplemento;
     
     //variáveis para uso "interno" da classe
-    private ClienteDao dao = new ClienteDao();
-    private Cliente objetoSelecionado = new Cliente();
-    private CidadeDao daoCidade = new CidadeDao();
+    private final ClienteDao dao = new ClienteDao();
+    private final Cliente objetoSelecionado = new Cliente();
+    private final CidadeDao daoCidade = new CidadeDao();
     
 
     @Override
@@ -65,7 +65,7 @@ public class ClienteController implements Initializable, ICadastro {
         
         //----> CARREGAMENTO DO COMBOBOX
         cbTipoPessoa.setItems(TipoPessoa.tipoPessoa());
-        cbCidade.setItems(daoCidade.comboBoxCidade());
+       // cbCidade.setItems(daoCidade.comboBoxCidade());
     }    
 
     @FXML

@@ -1,11 +1,32 @@
 
 package com.projetos.projetochdedetizadora.model;
 
-public class ItensDeCompra {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="intes de copra")
+public class ItensDeCompra implements Serializable {
+    @Id //chave primaria
+    @GeneratedValue(strategy =GenerationType.IDENTITY)//auto incremente
+    @Column(name="id", nullable = false)//coluna no banco de dados
     private Long id;
+    
+    @Column(name="valor unitario", length = 100, nullable = false)
     private Double valorUnit;
+    
+    @Column(name="quantidade", length = 100, nullable = false)
     private Double quantidade;
+    
+    @Column(name="compra", length = 100, nullable = false)
     private Long compra;
+    
+    @Column(name="produto", length = 100, nullable = false)
     private Long produto;
 
     public Long getId() {
