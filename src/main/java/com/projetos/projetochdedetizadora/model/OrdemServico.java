@@ -1,23 +1,58 @@
 
 package com.projetos.projetochdedetizadora.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class OrdemServico {
+@Entity
+@Table(name="ordem servico")
+public class OrdemServico implements Serializable {
+     @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)//auto icremente
+    @Column(name="id", nullable = false)//coluna no banco de dados
     private Long id; //NÃO pode ser nulo
+     
+     
     private String idCliente;  //RELACIONAMENTO
     private String idCidade; //RELACIONAMENTO
     private String idFuncionario;  //RELACIONAMENTO
+    
+    @Column(name="data pedido", length = 100, nullable = false)
     private LocalDate dataPedido; //NÃO pode ser nulo
+    
+    @Column(name="data servico", length = 100, nullable = true)
     private LocalDate dataServico; //PODE ser nulo
+    
+    @Column(name="local", length = 100, nullable = false)
     private String local; //NÃO pode ser nulo
+    
+    @Column(name="complemento", length = 100, nullable = true)
     private String complemento; //PODE ser nulo
+    
+    @Column(name="area", length = 100, nullable = true)
     private float area; //PODE ser nulo
+    
+    @Column(name="situacao visita", length = 100, nullable = false)
     private String situacaoVisita; //NÃO pode ser nulo
+    
+    @Column(name="praga", length = 100, nullable = true)
     private String praga; //PODE ser nulo
+    
     private String idProduto;  //RELACIONAMENTO
+    
+    @Column(name="modalidade ordem servico", length = 100, nullable = false)
     private String modalidadeOrdemServico; //NÃO pode ser nulo
+    
+    @Column(name="tempo garantia", length = 100, nullable = true)
     private int tempoGarantia; //PODE ser nulo
+    
+    @Column(name="valor", length = 100, nullable = true)
     private double valor; //PODE ser nulo
 
     public Long getId() {

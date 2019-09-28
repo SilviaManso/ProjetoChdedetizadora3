@@ -18,5 +18,18 @@ public class CidadeDao {
           System.out.println("Ocorreu o erro:" + erro);
         }  
     }
-}
+        public void excluir(Cidade cidade) {
+        try {
+            Session session = ConexaoBanco.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.delete(cidade);
+            session.getTransaction().commit();
+            session.close();
+            System.out.println("Registro foi excluído com sucesso!");
+        } catch (Exception erro) {
+            System.out.println("Ocorreu o erro: " + erro);
+        }
+    
+
+}}
 

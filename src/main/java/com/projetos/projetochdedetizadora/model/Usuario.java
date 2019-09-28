@@ -1,10 +1,30 @@
 
 package com.projetos.projetochdedetizadora.model;
 
-public class Usuario {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="usuario")
+
+public class Usuario implements Serializable {
+     @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)//auto icremente
+    @Column(name="id", nullable = false)//coluna no banco de dados
     private Long id; //NÃO pode ser nulo
+     
+    @Column(name="login", length = 100, nullable = false)
     private String login; //NÃO pode ser nulo
+    
+    @Column(name="senha", length = 6, nullable = false)
     private String senha; //NÃO pode ser nulo
+    
+    @Column(name="confirma senha", length = 6, nullable = true)
     private String confirmarSenha; //NÃO VAI SER ENVIADO PRO BANCO DE DADOS
 
     public Long getId() {
