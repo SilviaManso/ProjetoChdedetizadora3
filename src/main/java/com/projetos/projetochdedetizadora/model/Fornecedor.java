@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -31,7 +32,8 @@ public class Fornecedor implements Serializable {
     @Column(name="complemento", length = 15, nullable = true)
     private String complemento;  //PODE ser nulo
     
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "cidade", nullable = false)
     private Cidade cidade; //RELACIONAMENTO
     
     @Column(name="telefone1", length = 15, nullable = false)
@@ -49,8 +51,8 @@ public class Fornecedor implements Serializable {
     @Column(name="insc_estadual", length = 15, nullable = true)
     private String inscricaoEstatual; //PODE ser nulo
     
-    @Column(name="status", length = 2, nullable = false)
-    private String status; //NÃO pode ser nulo
+    @Column(name="status", nullable = false)
+    private boolean status; //NÃO pode ser nulo
     
     @Column(name="observacao", length = 100, nullable = true)
     private String observacao; //PODE ser nulo
@@ -113,11 +115,11 @@ public class Fornecedor implements Serializable {
         this.email = email;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

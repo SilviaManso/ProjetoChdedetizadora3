@@ -4,6 +4,11 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import static com.projetos.projetochdedetizadora.controller.TelaPrincipalController.icone;
 import static com.projetos.projetochdedetizadora.controller.TelaPrincipalController.titulo;
+import com.projetos.projetochdedetizadora.dao.CidadeDao;
+import com.projetos.projetochdedetizadora.dao.FuncionarioDao;
+import com.projetos.projetochdedetizadora.model.Cidade;
+import com.projetos.projetochdedetizadora.model.Cliente;
+import com.projetos.projetochdedetizadora.model.Funcionario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -27,7 +32,7 @@ public class FuncionarioController implements Initializable, ICadastro {
     @FXML private Button btnNovo;
     @FXML private Button btnSalvar;
     @FXML private Button btnExcluir;
-    @FXML private TableView<?> tableView;
+    @FXML private TableView<Funcionario> tableView;
     @FXML private JFXTextField tfId;
     @FXML private JFXTextField tfDescricao;
     @FXML private JFXTextField tfPesquisar;
@@ -35,16 +40,25 @@ public class FuncionarioController implements Initializable, ICadastro {
     @FXML private JFXTextField tfFuncao;
     @FXML private JFXTextField tfEndereco;
     @FXML private JFXTextField tfNum;
-    @FXML private JFXTextField tfCelular;
-    @FXML private JFXComboBox<?> cbCidade;
+    @FXML private JFXComboBox<Cidade> cbCidade;
+    @FXML private JFXTextField tfTelefone;
     @FXML private Label lblTitulo;
+    
+    //variáveis para uso "INTERNO" da classe
+    private FuncionarioDao dao = new FuncionarioDao();
+    private Funcionario objetoSelecionado = new Funcionario();
+    private CidadeDao daoCidade = new CidadeDao();
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //-----> Configuração da barra de título do form
+        //-----> CONFIGURAÇÃO DA BARRA DE TÍTULO DO FORM.
         lblTitulo.setText("CADASTRO DE "+ toUpperCase(titulo));
         Image img = new Image(icone);
-        imgViewTitulo.setImage(img);        
+        imgViewTitulo.setImage(img); 
+        
+        //----> CARREGAMENTO DO COMBOBOX UF
+        cbCidade.setItems(daoCidade.comboBoxCidade());
     }    
 
     @FXML
@@ -53,6 +67,31 @@ public class FuncionarioController implements Initializable, ICadastro {
 
     @FXML
     private void salvarRegistro(ActionEvent event) {
+        Funcionario objeto = new Funcionario();
+            
+        //testa se o objeto não está vazio
+        if (objetoSelecionado != null) {
+            objeto.setId(objetoSelecionado.getId());
+        }
+        
+        objeto.setDescricao(tfDescricao.getText());
+        objeto.setEndereco(tfEndereco.getText());
+        objeto.setNum(Integer.parseInt(tfNum.getText()));
+        /* combobox */
+        objeto.setFuncao(tfFuncao.getText());
+        objeto.setTelefone1(Long.parseLong(tfTelefone.getText()));
+        
+        if (chAtivo.isSelected()){
+            objeto.setStatus(true);
+        } else {
+            objeto.setStatus(false);
+        }
+        
+        //verifica o retorno do método salvar.
+        dao.salvar(objeto);
+        
+        atualizarTabela();
+        limparCamposFormulario();
     }
 
     @FXML

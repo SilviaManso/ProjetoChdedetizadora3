@@ -2,11 +2,16 @@
 package com.projetos.projetochdedetizadora.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +30,19 @@ public class Cidade implements Serializable  {
      
     @Column(name="cep",length = 8, nullable = false)
     private Long cep; //NÃO pode ser nulo
+    
+    //-----> RELACIONAMENTOS
+    @OneToMany (mappedBy = "cidade", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, 
+            orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Funcionario> funcionario = new ArrayList();
+    
+    @OneToMany (mappedBy = "cidade", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, 
+            orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Fornecedor> fornecedor = new ArrayList();
+    
+    @OneToMany (mappedBy = "cidade", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, 
+            orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Cliente> cliente = new ArrayList();
      
     @Column(name="status", nullable = false)
     private boolean status; //NÃO pode ser nulo
@@ -68,6 +86,35 @@ public class Cidade implements Serializable  {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<Funcionario> getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(List<Funcionario> funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public List<Fornecedor> getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(List<Fornecedor> fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public List<Cliente> getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(List<Cliente> cliente) {
+        this.cliente = cliente;
+    }
+    
+    @Override
+    public String toString() {
+        return descricao;
     }
     
 }

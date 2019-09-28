@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,7 +31,8 @@ public class Cliente implements Serializable {
     @Column(name="complemento", length = 15, nullable = true)
     private String complemento; //PODE ser nulo
     
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "cidade", nullable = false)
     private Cidade cidade; //RELACIONAMENTO
     
     @Column(name="cep", length = 8, nullable = false)
@@ -50,7 +52,7 @@ public class Cliente implements Serializable {
     @Column(name="email", length =100, nullable = true)
     private String email; //PODE ser nulo
 
-    @Column(name="tipo_de_pessoa", length =16, nullable = false)
+    @Column(name="tipo_de_pessoa", length =10, nullable = false)
     private String tipoPessoa; //NÃO pode ser nulo
    
     @Column(name="cpf_cnpj", length =15, nullable = true)
@@ -59,8 +61,8 @@ public class Cliente implements Serializable {
     @Column(name="insc_estadual", length =15, nullable = true)
     private String inscricaoEstatual; //PODE ser nulo
    
-    @Column(name="status", length =2, nullable = false)
-    private String status; //NÃO PODE ser nulo
+    @Column(name="status", nullable = false)
+    private boolean status; //NÃO PODE ser nulo
    
     @Column(name="observacao", length =100, nullable = true)
     private String observacao; //PODE ser nulo
@@ -131,11 +133,11 @@ public class Cliente implements Serializable {
         this.telefone3 = telefone3;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

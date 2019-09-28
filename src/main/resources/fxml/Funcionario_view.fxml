@@ -90,7 +90,7 @@
          </children>
       </HBox>
       <TableView fx:id="tableView" layoutX="15.0" layoutY="119.0" prefHeight="304.0" prefWidth="419.0" />
-      <GridPane layoutX="448.0" layoutY="85.0" prefHeight="345.0" prefWidth="432.0" vgap="10.0">
+      <GridPane layoutX="448.0" layoutY="80.0" prefHeight="345.0" prefWidth="432.0" vgap="10.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="124.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="77.0" />
@@ -121,7 +121,7 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="tfFuncao" labelFloat="true" promptText="FUNÇÂO" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4">
+            <JFXTextField fx:id="tfFuncao" labelFloat="true" promptText="FUNÇÃO" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
@@ -142,7 +142,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </JFXTextField>
-            <JFXTextField fx:id="tfCelular" labelFloat="true" prefHeight="25.0" prefWidth="205.0" promptText="CELULAR" GridPane.columnSpan="3" GridPane.rowIndex="5">
+            <JFXTextField fx:id="tfTelefone" labelFloat="true" prefHeight="25.0" prefWidth="205.0" promptText="TELEFONE*" GridPane.columnSpan="3" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>

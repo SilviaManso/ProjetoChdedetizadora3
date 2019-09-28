@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +28,9 @@ public class Funcionario implements Serializable {
     @Column(name="numero", length = 6, nullable = false)
     private int num; //NÃO pode ser nulo
     
-    @OneToOne
-    private String idCidade; //RELACIONAMENTO
+    @ManyToOne
+    @JoinColumn(name = "cidade", nullable = false)
+    private Cidade cidade; //RELACIONAMENTO
     
     @Column(name="telefone", length = 15, nullable = false)
     private Long telefone1; //NÃO pode ser nulo
@@ -36,51 +38,11 @@ public class Funcionario implements Serializable {
     @Column(name="funcao", length = 30, nullable = false)
     private String funcao; //NÃO pode ser nulo
     
-    @Column(name="status", length = 2, nullable = false)
-    private String status; //NÃO pode ser nulo
+    @Column(name="status", nullable = false)
+    private boolean status; //NÃO pode ser nulo
 
     
     
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
-    public String getIdCidade() {
-        return idCidade;
-    }
-
-    public void setIdCidade(String idCidade) {
-        this.idCidade = idCidade;
-    }
-
-    public Long getTelefone1() {
-        return telefone1;
-    }
-
-    public void setTelefone1(Long telefone1) {
-        this.telefone1 = telefone1;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Long getId() {
         return id;
     }
@@ -104,5 +66,45 @@ public class Funcionario implements Serializable {
     public void setFuncao(String funcao) {
         this.funcao = funcao;
     } 
+    
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    public Long getTelefone1() {
+        return telefone1;
+    }
+
+    public void setTelefone1(Long telefone1) {
+        this.telefone1 = telefone1;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     
 }

@@ -121,7 +121,7 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="tfCpf" labelFloat="true" promptText="CNPJ" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <JFXTextField fx:id="tfCnpj" labelFloat="true" promptText="CNPJ" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -157,7 +157,7 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="tfCelular" labelFloat="true" promptText="CELULAR" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5">
+            <JFXTextField fx:id="tfTelefone2" labelFloat="true" promptText="TELEFONE 2" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -165,12 +165,7 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXComboBox fx:id="cbTipoPessoa" labelFloat="true" prefHeight="25.0" prefWidth="203.0" promptText="PESSOA*" styleClass="jfx-combo-box" GridPane.columnIndex="3" GridPane.rowIndex="6">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </JFXComboBox>
-            <JFXTextField fx:id="tfEmail" labelFloat="true" promptText="EMAIL*" GridPane.columnSpan="3" GridPane.rowIndex="6">
+            <JFXTextField fx:id="tfEmail" labelFloat="true" promptText="EMAIL*" GridPane.columnSpan="4" GridPane.rowIndex="6">
                <font>
                   <Font size="14.0" />
                </font>
