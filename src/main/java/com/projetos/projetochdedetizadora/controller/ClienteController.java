@@ -26,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
 
@@ -157,14 +158,61 @@ public class ClienteController implements Initializable, ICadastro {
 
     @Override
     public void setCamposFormulario() {
+        objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
+        tfId.setText(String.valueOf(objetoSelecionado.getId()));
+        tfEndereco.setText( objetoSelecionado.getEndereco());
+       // cbCidade
+        tfEmail.setText( objetoSelecionado.getEmail());
+        tfObservacao.setText( objetoSelecionado.getObservacao());
+        tfPesquisar.setText( objetoSelecionado.getPesquisar());
+        chAtivo.setText( objetoSelecionado.getAtivo());
+        tfCep.setText(StringValueOf(objetoSelecionado.getCep()));
+       //tfTelefone1.setText( objetoSelecionado.getTelefone1());
+       // tfTelefone2.setText( objetoSelecionado.getTelefone2());
+        // tfTelefone3.setText( objetoSelecionado.getTelefone3());
+        tfCpfCnpj.setText( objetoSelecionado.getCpfCnpj());
+        tfDescricao.setText( objetoSelecionado.getDescricao());
+       // cbTipoPessoa.setValue objetoSelecionado.getDescricao());
+      // tfNum.setText( objetoSelecionado.getNum());
+       tfComplemento.setText( objetoSelecionado.getComplemento());
+      
+       
     }
 
     @Override
     public void limparCamposFormulario() {
+        objetoSelecionado = null;
+        tfId.clear();
+        tfEndereco.clear();
+        cbCidade.getSelectionModel().select(-1);
+        tfEmail.clear();
+        tfObservacao.clear();
+        tfPesquisar.clear();
+        tfCep.clear();
+        tfTelefone1.clear();
+        tfTelefone2.clear();
+        tfTelefone3.clear();
+        tfCpfCnpj.clear();
+        tfDescricao.clear();
+        cbTipoPessoa.getSelectionModel().select(-1);
+        tfNum.clear();
+        tfComplemento.clear();
+        
+        tfDescricao.requestFocus();
+        
     }
 
     @FXML
     private void filtrarRegistro(KeyEvent event) {
         atualizarTabela();
+    }
+
+    @FXML
+    private void clicarTabela(MouseEvent event) {
+         setCamposFormulario();
+    }
+
+    private String StringValueOf(Long cep) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

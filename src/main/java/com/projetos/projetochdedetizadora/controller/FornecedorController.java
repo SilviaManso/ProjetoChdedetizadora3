@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
 
@@ -117,9 +118,51 @@ public class FornecedorController implements Initializable, ICadastro {
 
     @Override
     public void setCamposFormulario() {
+        
+        objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
+        tfId.setText(String.valueOf(objetoSelecionado.getId()));
+        tfDescricao.setText( objetoSelecionado.getDescricao());
+        //tfCnpj.setText( objetoSelecionado.getCnpj());
+        tfEndereco.setText( objetoSelecionado.getEndereco());
+        tfNum.setText( objetoSelecionado.getnum());
+        tfComplemento.setText( objetoSelecionado.getComplemento());
+        
+       //  cbCidade.setText( objetoSelecionado.getCidade());
+       
+       
+       tfTelefone.setText( objetoSelecionado.getTelefone());
+       //tfTelefone2.setText( objetoSelecionado.getTelefone2());
+       tfEmail.setText( objetoSelecionado.getEmail());
+       tfObservacao.setText( objetoSelecionado.getObservacao());
+       tfPesquisar.setText( objetoSelecionado.getPesquisar());
+       tfInsEstadual.setText( objetoSelecionado.getEstadual());
+       
     }
 
     @Override
     public void limparCamposFormulario() {
+        objetoSelecionado = null;
+        tfId.clear();
+        tfDescricao.clear();
+        tfCnpj.clear();
+        tfEndereco.clear();
+        tfNum.clear();
+        tfComplemento.clear();
+        cbCidade.getSelectionModel().select(-1);
+        tfTelefone.clear();
+        tfTelefone2.clear();
+        tfEmail.clear();
+        tfObservacao.clear();
+        tfPesquisar.clear();
+        tfInsEstadual.clear();
+        tfDescricao.requestFocus();
+       
+        
+        
+    }
+
+    @FXML
+    private void clicarTabela(MouseEvent event) {
+        setCamposFormulario();
     }
 }

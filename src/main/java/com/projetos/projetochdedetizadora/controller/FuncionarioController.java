@@ -7,7 +7,6 @@ import static com.projetos.projetochdedetizadora.controller.TelaPrincipalControl
 import com.projetos.projetochdedetizadora.dao.CidadeDao;
 import com.projetos.projetochdedetizadora.dao.FuncionarioDao;
 import com.projetos.projetochdedetizadora.model.Cidade;
-import com.projetos.projetochdedetizadora.model.Cliente;
 import com.projetos.projetochdedetizadora.model.Funcionario;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
 
@@ -108,9 +108,42 @@ public class FuncionarioController implements Initializable, ICadastro {
 
     @Override
     public void setCamposFormulario() {
+        objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
+        tfId.setText(String.valueOf(objetoSelecionado.getId()));
+        tfDescricao.setText( objetoSelecionado.getDescricao());
+        tfPesquisar.setText( objetoSelecionado.getPesquisar());
+        chAtivo.setText( objetoSelecionado.getAtivo());
+        tfFuncao.setText( objetoSelecionado.getFuncao());
+        tfEndereco.setText( objetoSelecionado.getEndereco());
+        //tfNum.setText( objetoSelecionado.getNum());
+       Cidade cidadeSelecionada = new Cidade();
+            cidadeSelecionada.setId(objetoSelecionado.getCidade().getId());
+            cidadeSelecionada.setDescricao(objetoSelecionado.getCidade().getDescricao());
+            cidadeSelecionada.setCep(objetoSelecionado.getCidade().getCep());
+            cidadeSelecionada.setUf(objetoSelecionado.getCidade().getUf());
+            
+            cbCidade.getSelectionModel().selectFirst();
+            cbCidade.setValue(cidadeSelecionada);
+       tfTelefone.setText( objetoSelecionado.getTelefone());
+      
     }
 
     @Override
     public void limparCamposFormulario() {
+        objetoSelecionado = null;
+        tfId.clear();
+        tfDescricao.clear();
+        tfPesquisar.clear();
+        tfFuncao.clear();
+        tfEndereco.clear();
+        tfNum.clear();
+        cbCidade.getSelectionModel().select(-1);
+        tfTelefone.clear();
+        tfDescricao.requestFocus();
+    }
+
+    @FXML
+    private void clicarTabela(MouseEvent event) {
+         setCamposFormulario();
     }
 }

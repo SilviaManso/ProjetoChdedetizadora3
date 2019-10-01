@@ -89,7 +89,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="120.0" prefHeight="448.0" prefWidth="435.0" />
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="120.0" onMouseClicked="#clicarTabela" prefHeight="448.0" prefWidth="435.0" />
       <GridPane layoutX="470.0" layoutY="82.0" prefHeight="486.0" prefWidth="471.0" vgap="10.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="124.0" />

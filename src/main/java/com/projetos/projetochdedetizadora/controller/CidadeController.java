@@ -25,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
 
@@ -137,14 +138,33 @@ public class CidadeController implements Initializable, ICadastro {
 
     @Override
     public void setCamposFormulario() {
+         objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
+         tfId.setText(String.valueOf(objetoSelecionado.getId()));
+         tfPesquisar.setText(String.valueOf(objetoSelecionado.getPesquisar()));
+         chAtivo.setText(String.valueOf(objetoSelecionado.getAtivo()));
+         tfDescricao.setText(objetoSelecionado.getDescricao());
+         tfCep.setText(String.valueOf(objetoSelecionado.getCep()));
+         cbUf.setValue(objetoSelecionado.getUf());
     }
 
     @Override
     public void limparCamposFormulario() {
+        objetoSelecionado = null;
+        tfId.clear();
+        tfDescricao.clear();
+        tfCep.clear();
+        cbUf.getSelectionModel().select(-1);
+        tfDescricao.requestFocus();
+        
     }
 
     @FXML
     private void filtrarRegistros(KeyEvent event) {
         atualizarTabela();
+    }
+
+    @FXML
+    private void clicarTabela(MouseEvent event) {
+        setCamposFormulario();
     }
 }

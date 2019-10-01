@@ -116,5 +116,13 @@ public class Cidade implements Serializable  {
     public String toString() {
         return descricao;
     }
+
+    public Object getPesquisar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getAtivo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
