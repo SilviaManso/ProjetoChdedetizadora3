@@ -115,8 +115,9 @@ public class FuncionarioController implements Initializable, ICadastro {
         chAtivo.setText( objetoSelecionado.getAtivo());
         tfFuncao.setText( objetoSelecionado.getFuncao());
         tfEndereco.setText( objetoSelecionado.getEndereco());
-        //tfNum.setText( objetoSelecionado.getNum());
-       Cidade cidadeSelecionada = new Cidade();
+        tfNum.setText(String.valueOf( objetoSelecionado.getNum()));
+        
+        Cidade cidadeSelecionada = new Cidade();
             cidadeSelecionada.setId(objetoSelecionado.getCidade().getId());
             cidadeSelecionada.setDescricao(objetoSelecionado.getCidade().getDescricao());
             cidadeSelecionada.setCep(objetoSelecionado.getCidade().getCep());

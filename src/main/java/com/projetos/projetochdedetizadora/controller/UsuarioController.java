@@ -79,7 +79,7 @@ public class UsuarioController implements Initializable, ICadastro {
         tfPesquisar.setText( objetoSelecionado.getPesquisar());
         chAtivo.setText( objetoSelecionado.getAtivo());
         pwSenha.setText( objetoSelecionado.getSenha());
-       // pwConfirmarSenhasetText( objetoSelecionado.getConfirmarSenha());
+        pwConfirmarSenha.setText(String.valueOf( objetoSelecionado.getConfirmarSenha()));
         tfLogin.setText( objetoSelecionado.getSenha());
        
     }
@@ -99,6 +99,10 @@ public class UsuarioController implements Initializable, ICadastro {
     @FXML
     private void clicarTabela(MouseEvent event) {
          setCamposFormulario();
+    }
+
+    private void pwConfirmarSenhasetText(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -122,7 +122,7 @@ public class FornecedorController implements Initializable, ICadastro {
         objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
         tfId.setText(String.valueOf(objetoSelecionado.getId()));
         tfDescricao.setText( objetoSelecionado.getDescricao());
-        //tfCnpj.setText( objetoSelecionado.getCnpj());
+       // tfCnpj.setText( objetoSelecionado.getCnpj());
         tfEndereco.setText( objetoSelecionado.getEndereco());
         tfNum.setText( objetoSelecionado.getnum());
         tfComplemento.setText( objetoSelecionado.getComplemento());
@@ -131,7 +131,7 @@ public class FornecedorController implements Initializable, ICadastro {
        
        
        tfTelefone.setText( objetoSelecionado.getTelefone());
-       //tfTelefone2.setText( objetoSelecionado.getTelefone2());
+       tfTelefone2.setText(String.valueOf(objetoSelecionado.getTelefone1()));
        tfEmail.setText( objetoSelecionado.getEmail());
        tfObservacao.setText( objetoSelecionado.getObservacao());
        tfPesquisar.setText( objetoSelecionado.getPesquisar());

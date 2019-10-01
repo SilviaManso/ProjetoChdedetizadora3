@@ -161,20 +161,31 @@ public class ClienteController implements Initializable, ICadastro {
         objetoSelecionado = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex());
         tfId.setText(String.valueOf(objetoSelecionado.getId()));
         tfEndereco.setText( objetoSelecionado.getEndereco());
-       // cbCidade
+        
+       Cidade cidadeSelecionada = new Cidade();
+          //  cidadeSelecionada.setId(objetoSelecionado.getCidade().getId());
+           // cidadeSelecionada.setDescricao(objetoSelecionado.getCidade().getDescricao());
+          //  cidadeSelecionada.setCep(objetoSelecionado.getCidade().getCep());
+           // cidadeSelecionada.setUf(objetoSelecionado.getCidade().getUf());
+            
+            cbCidade.getSelectionModel().selectFirst();
+            cbCidade.setValue(cidadeSelecionada);
+       
         tfEmail.setText( objetoSelecionado.getEmail());
         tfObservacao.setText( objetoSelecionado.getObservacao());
         tfPesquisar.setText( objetoSelecionado.getPesquisar());
         chAtivo.setText( objetoSelecionado.getAtivo());
         tfCep.setText(StringValueOf(objetoSelecionado.getCep()));
-       //tfTelefone1.setText( objetoSelecionado.getTelefone1());
-       // tfTelefone2.setText( objetoSelecionado.getTelefone2());
-        // tfTelefone3.setText( objetoSelecionado.getTelefone3());
+        tfTelefone1.setText(String.valueOf(objetoSelecionado.getTelefone1()));
+        tfTelefone2.setText(String.valueOf(objetoSelecionado.getTelefone1()));
+        tfTelefone3.setText(String.valueOf(objetoSelecionado.getTelefone1()));
         tfCpfCnpj.setText( objetoSelecionado.getCpfCnpj());
         tfDescricao.setText( objetoSelecionado.getDescricao());
+        
        // cbTipoPessoa.setValue objetoSelecionado.getDescricao());
-      // tfNum.setText( objetoSelecionado.getNum());
-       tfComplemento.setText( objetoSelecionado.getComplemento());
+       
+        tfNum.setText(String.valueOf( objetoSelecionado.getNum()));
+        tfComplemento.setText( objetoSelecionado.getComplemento());
       
        
     }
